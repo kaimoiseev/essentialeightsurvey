@@ -1,0 +1,7 @@
+links =	[
+			["../images/alchemist-lvl0-168x320.png", "../images/alchemist-lvl1-168x320.png", "../images/alchemist-lvl2-168x320.png", "../images/alchemist-lvl3-168x320.png", "../images/alchemist-na-168x320.png"],
+			["../images/battlemage-lvl0-168x320.png", "../images/battlemage-lvl1-168x320.png", "../images/battlemage-lvl2-168x320.png", "../images/battlemage-lvl3-168x320.png", "../images/battlemage-na-168x320.png"],
+			["../images/apprentice-lvl0-168x320.png", "../images/apprentice-lvl1-168x320.png", "../images/apprentice-lvl2-168x320.png", "../images/apprentice-lvl3-168x320.png", "../images/apprentice-na-168x320.png"],
+			["../images/cleric-lvl0-168x320.png", "../images/cleric-lvl1-168x320.png", "../images/cleric-lvl2-168x320.png", "../images/cleric-lvl3-168x320.png", "../images/cleric-na-168x320.png"],
+			["../images/mercenary-lvl0-184x320.png", "../images/mercenary-lvl1-184x320.png", "../images/mercenary-lvl2-184x320.png", "../images/mercenary-lvl3-184x320.png", "../images/mercenary-na-184x320.png"]
+		]

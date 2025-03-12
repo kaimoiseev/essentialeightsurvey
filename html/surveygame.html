@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    <!-- Actual title needed -->
+	<title> E8 Survey </title>
+
+	
+	<link rel="stylesheet" type="text/css" href="../css/general.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+	<script src="../js/gamescript.js"></script>	
+	<script src="../json/characterimglinks.json"></script>
+	<script src="../json/questionlist.json"></script>
+<!--	<script src="../json/securitylevels.json"></script> -->
+
+	<!-- 
+	link script for the page
+	-->
+	<!--
+	-->
+
+
+</head>
+<body>
+	
+	<!-- Survey itself goes here goes here -->
+
+
+	<!-- Title of the survey -->
+
+	<h1>Essential Eight Maturity Levels Survey</h1>
+
+	<!-- Brief info abt the survey and title of the survey part --> 
+
+	<div class="description popuponhover text">
+		<p>Description of the survey, source of the survey, etc. goes here. Armour means different maturity levels: the cuirass is ML1, the helmet is ML2, the shield is ML3. The default character clothes correspond to Level 0. The cross is for Not Applicable. Drag and drop the armour to the character. Double-click on the character to bring that character's level back to Level 0.</p>
+		<h2 id="activesurveypart"></h2>
+	</div>
+
+	<p class="popup text">Hello World!</p>
+
+	<!--
+	element with five characters 
+		subelements with each character
+	-->
+
+	<div id="characterlineup">
+		<img class="character researchers" src="../images/alchemist-lvl0-168x320.png" draggable="false" alt="Pixel art image of an alchemist">
+		<img class="character faculty" src="../images/battlemage-lvl0-168x320.png" draggable="false" alt="Pixel art image of a battlemage">
+		<img class="character students" src="../images/apprentice-lvl0-168x320.png" draggable="false" alt="Pixel art image of an apprentice">
+		<img class="character admin" src="../images/cleric-lvl0-168x320.png" draggable="false" alt="Pixel art image of a cleric">
+		<img class="character thirdparty" src="../images/mercenary-lvl0-184x320.png" draggable="false" alt="Pixel art image of a mercenary">
+		<div id="textorganiser">
+			<div class="groupname firstname text"><p>Researchers</p></div> 
+			<div class="groupname secondname text"><p>Academic Faculty</p></div> 
+			<div class="groupname thirdname text"><p>Students</p></div>
+			<div class="groupname fourthname text"><p>Admin staff</p></div> 
+			<div class="groupname fifthname text"><p>Third-party vendors</p></div>
+		</div>
+	</div>
+
+	<!--
+	 element with four drag-and-drop armour items
+	-->
+
+	<div id="dragdropfilters">
+		<img class="dragdrop cuirass" src="../images/cuirass-128x128.png" draggable="false" alt="Pixel art of a cuirass">
+		<img class="dragdrop helmet" src="../images/helmet-144x128.png" draggable="false" alt="Pixel art of a helmet">
+		<img class="dragdrop shield" src="../images/shield-128x128.png" draggable="false" alt="Pixel art of a shield">
+		<img class="dragdrop na" src="../images/na-128x128.png" draggable="false" alt="Pixel art of a grey cross">
+	</div>
+
+
+	<!--
+
+	<> element with the questions and requirements </>
+	-->
+
+	<div id="qandreqelement">
+		<div id="questionselement"></div>
+		<div id="requirementselement"></div>
+	</div>	
+
+
+	<!--
+	 continue button that does following: 
+	1) records the levels chosen for each character into a matrix
+	2) switches questions and requirements; 
+	3) switches the "which part of the survey the user is on" element;
+	4) switches the character elements back to base clothes;
+	5) when the user clicks onto the last part, the button text changes to download data
+	6) if the user is on the last part and clicks on the button, downloads JSON file with the matrix
+
+	-->
+
+	<button type="button" id="sectionbutton" class="text">Next section</button>
+
+
+</body>
+</html>
