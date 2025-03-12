@@ -84,7 +84,7 @@ $(document).ready(function(){
 	// drag and drop functions for each column (4 total) to change the image and variable for each group 
 
 
-	$(".dragdrop").mousedown(function(){		//create a dragged img
+	$(".dragdrop").on('mousedown touchstart' function(){		//create a dragged img
 	
 		// which level image is dragged
 		currentDraggedImgLevelIndex = $(".dragdrop").index(this);
@@ -109,6 +109,7 @@ $(document).ready(function(){
 
 		//make it actually draggable 
 		document.onmouseup = stopDraggingImg;
+		document.ontouchend = stopDraggingImg;
 		document.onmousemove = dragImg;
 
 	});
