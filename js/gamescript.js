@@ -120,8 +120,9 @@ $(document).ready(function(){
 	});
 
 	$(".character").on('touchstart', function(event){
-		event.preventDefault();
 		if (currentDraggedImgLevelIndex!=99){
+			event.preventDefault();
+
 			characterHoverIndex = $(".character").index(this);
 			var levelIndex = currentDraggedImgLevelIndex + 1;
 
