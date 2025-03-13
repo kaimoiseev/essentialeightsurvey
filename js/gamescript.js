@@ -260,7 +260,7 @@ $(document).ready(function(){
 			$("button").text("Download data");
 			currentSurveyPart++;
 		} else if (currentSurveyPart==surveyParts.length){
-
+			recordValues(currentSurveyPart-1);
 			var endData = JSON.stringify(securityLevels);
 			const endDataToTextFile = new Blob([endData], {type:"application/json"});
 			const downloadLink = document.createElement("a");
