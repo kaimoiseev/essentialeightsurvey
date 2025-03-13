@@ -84,7 +84,7 @@ $(document).ready(function(){
 	// drag and drop functions for each column (4 total) to change the image and variable for each group 
 
 
-	$(".dragdrop").on('mousedown touchstart', function(event){		//create a dragged img
+	$(".dragdrop").mousedown(function(){		//create a dragged img
 	
 		// which level image is dragged
 		currentDraggedImgLevelIndex = $(".dragdrop").index(this);
@@ -97,7 +97,7 @@ $(document).ready(function(){
 
 		// position it in the same place as "parent" element
 		var offsetChild = $(this).offset();
-		var offsetOfScroll = window.scrollY;
+		var offsetOfScroll = $("body").scrollTop();
 		var startPosY = offsetChild.top - offsetOfScroll; // + offsetParent.top;
 		var startPosX = offsetChild.left; // + offsetParent.left;
 
@@ -105,20 +105,54 @@ $(document).ready(function(){
 
 		posXBeforeMove = event.clientX;
 		posYBeforeMove = event.clientY;
-		if (isTouchDevice()) {
-//			posXBeforeMove = touch.clientX;
-//			posYBeforeMove = touch.clientY;
-			posXBeforeMove = event.touches[0].clientX;
-			posYBeforeMove = event.touches[0].clientY;
-		}
 
 
 		//make it actually draggable 
-		document.onmouseup = stopDraggingImg(event);
-		document.ontouchend = stopDraggingImg(event);
-		document.onmousemove = dragImg(event);
-		document.ontouchmove = dragImg(event);
+		document.onmouseup = stopDraggingImg;
+		document.onmousemove = dragImg;
 
+	});
+
+	$(".dragdrop").on('touchstart', function(event){
+		event.preventDefault();
+		currentDraggedImgLevelIndex = $(".dragdrop").index(this);
+
+	});
+
+	$(".character").on('touchstart', function(event){
+		event.preventDefault();
+		if (currentDraggedImgLevelIndex!=99){
+			characterHoverIndex = $(".character").index(this);
+			var levelIndex = currentDraggedImgLevelIndex + 1;
+
+			switch (characterHoverIndex) {
+			case 0:
+				$(".researchers").attr("src", links[0][levelIndex]);
+				currentPartLevels[0]=levelIndex;
+				break;
+			case 1:
+				$(".faculty").attr("src", links[1][levelIndex]);
+				currentPartLevels[1]=levelIndex;
+				break;
+			case 2:
+				$(".students").attr("src", links[2][levelIndex]);
+				currentPartLevels[2]=levelIndex;
+				break;
+			case 3:
+				$(".admin").attr("src", links[3][levelIndex]);
+				currentPartLevels[3]=levelIndex;
+				break;
+			case 4:
+				$(".thirdparty").attr("src", links[4][levelIndex]);
+				currentPartLevels[4]=levelIndex;
+				break;
+			default: 
+				break;			
+		}
+
+		currentDraggedImgLevelIndex = 99;
+
+		}
 	});
 
 	function positionDraggedImg(startPosX, startPosY){
@@ -126,57 +160,35 @@ $(document).ready(function(){
 		$("#dragged").css("left", startPosX + "px");
 	}
 
-	function dragImg(event){
+	function dragImg(){
 		// drag "dragged" img after client cursor
-		event.preventDefault();
-		var currentX = event.clientX;
-		var currentY = event.clientY;
-		if (isTouchDevice()) {
-//			currentX = touch.clientX;
-//			currentY = touch.clientY;
-			currentX = event.touches[0].clientX;
-			currentY = event.touches[0].clientY;
-		}
 
-		posXMoveOffset = posXBeforeMove - currentX;
-		posYMoveOffset = posYBeforeMove - currentY;
-		posXBeforeMove = currentX;
-		posYBeforeMove = currentY;
+		posXMoveOffset = posXBeforeMove - event.clientX;
+		posYMoveOffset = posYBeforeMove - event.clientY;
+		posXBeforeMove = event.clientX;
+		posYBeforeMove = event.clientY;
 		var currentDraggedImgOffset = $("#dragged").offset();
-		var offsetOfScroll = window.scrollY;
-		console.log("scroll offset is " + offsetOfScroll);
-
+		var offsetOfScroll = $("body").scrollTop();
 		var posYAfterMove = currentDraggedImgOffset.top - offsetOfScroll - posYMoveOffset;
 		var posXAfterMove = currentDraggedImgOffset.left - posXMoveOffset;
 
 		$("#dragged").css("top", posYAfterMove + "px");
 		$("#dragged").css("left", posXAfterMove + "px");
-		console.log("x = " + currentX + ", y = "+ currentY);
+
 		console.log("x = " + posXAfterMove + ", y = " + posYAfterMove);
 	}
 
-	function stopDraggingImg(event){
+	function stopDraggingImg(){
 		document.onmouseup = null;
 		document.onmousemove = null;
-		document.ontouchend = null;
-		document.ontouchmove = null;
 		$("#dragged").remove();
 		// adds 1 to account for level 0 being default 
 		var levelIndex = currentDraggedImgLevelIndex + 1;
-		var currentX = event.clientX;
-		var currentY = event.clientY;
-		if (isTouchDevice()) {
-//			currentX = touch.clientX;
-//			currentY = touch.clientY;
-			currentX = event.touches[0].clientX;
-			currentY = event.touches[0].clientY;
-		}
-
 
 
 		// changes the character image and value in the current part's array depending on the index 
 
-		characterHoverIndex = getCurrentCharacterIndex(currentX, currentY);
+		characterHoverIndex = getCurrentCharacterIndex(event.clientX, event.clientY);
 		
 
 		switch (characterHoverIndex) {
@@ -207,9 +219,9 @@ $(document).ready(function(){
 		currentDraggedImgLevelIndex = 99;
 	}
 
-	function getCurrentCharacterIndex(currentX, currentY){
+	function getCurrentCharacterIndex(mouseX, mouseY){
 		//checks if mouse coordinates are over any of the characters; returns the index of the character
-		var elementsAtCoordinates = document.elementsFromPoint(currentX, currentY);
+		var elementsAtCoordinates = document.elementsFromPoint(mouseX, mouseY);
 		var characterIndex = 99;
 		var characterElements = $(".character");
 		for (var i=0; i<characterElements.length; i++){
@@ -272,26 +284,13 @@ $(document).ready(function(){
 	$(".popuponhover").hover(function(){
 		// place pop-up on mouse position, index of the pop-up in its class should be the same as the index of the
 		//popupOnHover element in said class 
-		var currentX = event.clientX;
-		var currentY = event.clientY;
-		if (isTouchDevice()) {
-			currentX = touch.clientX;
-			currentY = touch.clientY;
-		}
 		var popupIndex = $(".popupOnHover").index(this);
-		$("body").find(".popup").eq(popupIndex).css({"visibility":"visible", "top": currentY, "left":currentX, "z-index":"100"});
+		$("body").find(".popup").eq(popupIndex).css({"visibility":"visible", "top": event.clientY, "left":event.clientX, "z-index":"100"});
 
 	}, function(){
 		var popupIndex = $(".popupOnHover").index(this);
 		$("body").find(".popup").eq(popupIndex).css({"visibility":"hidden", "z-index":"10"});
 		
 	});
-
-	function isTouchDevice() {
-		return (('ontouchstart' in window) ||
-		(navigator.maxTouchPoints > 0) ||
-		(navigator.msMaxTouchPoints > 0));
-
-}
 
 });
