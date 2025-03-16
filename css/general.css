@@ -54,9 +54,12 @@ body{
 }
 
 h1{
-	font-size: 3em;
+	max-font-size: 3em;
+	font-size: calc(60vw / 25);
 	margin: 5px;
 	max-width: 60%;
+	max-height: 3em;
+	overflow: auto;
 }
 
 .text{
@@ -72,11 +75,13 @@ h1{
 	position: absolute;
 	max-width: 57%;
 	padding:0.5em;
-	max-height: calc(40% - 3em);
+	max-height: calc(40vh - 3em);
+	overflow: auto;
+	box-sizing: border-box;
 }
 
 .description > p{
-	max-height: calc(40% - 5em);
+	max-height: calc(40vh - 5em);
 	overflow: auto;
 }
 
@@ -109,23 +114,28 @@ h2{
 
 #dragdropfilters{
 	position:absolute;
-	top: 30%;
-	right:5%;
-	height:8%;
+	top: 30vh;
+	right:5vw;
+
 	user-drag: none;
     -webkit-user-drag: none;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-    max-width: 40%;
+    max-height:8vh;
+    max-width: 28vw;
+
     display: flex;
 	flex-direction: row;
 	overflow: auto;
 }
 
 .dragdrop{
-	height:100%;
+	max-height:8vh;
+	max-width: calc(28vw / 4 - 4px);
+	height: auto;
+    width: auto;
 	cursor: pointer;
 	margin-right:2px;
 	margin-left:2px;
@@ -159,7 +169,8 @@ h2{
 }
 
 #questionselement{
-	max-width:70%;
+	max-width:67vw;
+	box-sizing: border-box;
 
 }
 
@@ -181,7 +192,7 @@ h2{
 	position:absolute;
 	right:5%;
 	top:0px;
-	max-width: 28%;
+	max-width: 28vw;
 	overflow:auto;
 }
 
@@ -219,9 +230,20 @@ h2{
 	background-color:var(--requiredColor);
 }
 
-#sectionbutton{
+#nextsectionbutton{
 	position:fixed;
 	right:5%;
+	bottom:1%;
+	font-size: 1.3em;
+	color: var(--textColor);
+	background-color: var(--buttonBgColor);
+	border-radius: 6px;
+}
+
+#prevsectionbutton{
+	visibility: hidden;
+	position:fixed;
+	right:calc(5% + 10em);
 	bottom:1%;
 	font-size: 1.3em;
 	color: var(--textColor);
@@ -293,8 +315,16 @@ h2{
 
 @media only screen and (orientation: portrait){
 
+	body{
+		padding-right:0px;
+		padding-bottom:2em;
+		margin-right: 0px;
+	}
+
 	h1{
 		max-width: 100%;
+		font-size: 3em;
+		max-height: none;
 	}
 
 	.description{
@@ -304,6 +334,8 @@ h2{
 		padding:0.5em;
 		max-height: none;
 		display: block;
+		margin-left:0px;
+		margin-right:0px;
 	}
 
 	.description > p{
@@ -312,8 +344,8 @@ h2{
 
 	#characterlineup{
 		position:relative;
-		max-width: 96%;
-		left:2%;
+		max-width: 96vw;
+		left:2vw;
 		display: flex;
 		flex-direction: row;
 		overflow: auto;
@@ -346,10 +378,9 @@ h2{
 
 
 	#dragdropfilters{
-		left:60%;
-		position:relative;
-		top:0%;
-		right:0%;
+		margin-right: 0px;
+		margin-left:auto;
+		position:static;
 		max-height:10vh;
 		user-drag: none;
 	    -webkit-user-drag: none;
@@ -357,24 +388,26 @@ h2{
 	    -moz-user-select: none;
 	    -webkit-user-select: none;
 	    -ms-user-select: none;
-	    max-width: 40%;
+	    max-width: 40vw;
 	    display: flex;
 		flex-direction: row;
+
 	}
 
 	.dragdrop{
 		max-width:20%;
 		cursor: pointer;
-		margin-right:2px;
 		margin-left:2px;
+		margin-right: 2px;
 		user-drag: none;
 	    -webkit-user-drag: none;
 	    user-select: none;
 	    -moz-user-select: none;
 	    -webkit-user-select: none;
 	    -ms-user-select: none;
-	    float:left;
+	    float:right;
 	}
+
 
 	#dragged{
 		width:8%;
@@ -386,12 +419,13 @@ h2{
 		lefT:0px;
 	}
 
+
 	#qandreqelement{
 		position:relative;
 		top:0%;
 		left:0%;
-		padding-left: 0.1em;
 		width:100vw;
+		padding:0px;
 		max-height:60vh;
 		overflow: scroll;
 		margin:0px;
@@ -399,12 +433,14 @@ h2{
 	}
 
 	#questionselement{
-		max-width:58%;
+		max-width:58vw;
 
 	}
 
 	#requirementselement{
-		max-width: 40%;
+		max-width: 40vw;
 		overflow:auto;
+		right:1vw;
 	}
+
 }

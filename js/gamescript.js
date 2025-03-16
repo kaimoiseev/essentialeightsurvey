@@ -244,21 +244,26 @@ $(document).ready(function(){
 	});
 
 
-	$("button").click(function(){
+	$("#nextsectionbutton").click(function(){
 		// this should record the characters' values into a matrix, change section, 
 		//change questions and requirements, set 0s to the character values and character images 
+		$("#prevsectionbutton").css("visibility", "visible");
 		if(currentSurveyPart<(surveyParts.length-1)){
 			recordValues(currentSurveyPart);
 			currentSurveyPart = currentSurveyPart + 1;
 			changeQuestions(currentSurveyPart);
 			for (var i=0; i<currentPartLevels.length; i++){
-				currentPartLevels[i] = 0;
-				$("body").find(".character").eq(i).attr("src", links[i][0]);
+				currentPartLevels[i] = securityLevels[currentSurveyPart][i];
+				if(currentPartLevels[i]==99){
+				$("body").find(".character").eq(i).attr("src", links[i][4]);
+
+				} else{
+					$("body").find(".character").eq(i).attr("src", links[i][currentPartLevels[i]]);
+				}
 			}
 		}
 		if(currentSurveyPart==(surveyParts.length-1)){
-//			document.getElementById("sectionbutton").innerText = "Donwload Data";
-			$("button").text("Download data");
+			$("#nextsectionbutton").text("Download data");
 			currentSurveyPart++;
 		} else if (currentSurveyPart==surveyParts.length){
 			recordValues(currentSurveyPart-1);
@@ -268,6 +273,27 @@ $(document).ready(function(){
 			downloadLink.href = URL.createObjectURL(endDataToTextFile);
 			downloadLink.download = "securityLevels.json";
 			downloadLink.click();
+		}
+	});
+
+	$("#prevsectionbutton").click(function(){
+		if(currentSurveyPart>0){
+			recordValues(currentSurveyPart);
+			currentSurveyPart-=1;
+			changeQuestions(currentSurveyPart);
+			for (var i=0; i<currentPartLevels.length; i++){
+				currentPartLevels[i] = securityLevels[currentSurveyPart][i];
+				if(currentPartLevels[i]==99){
+				$("body").find(".character").eq(i).attr("src", links[i][4]);
+
+				} else{
+					$("body").find(".character").eq(i).attr("src", links[i][currentPartLevels[i]]);
+				}
+			} 
+			if (currentSurveyPart==0){
+				$("#prevsectionbutton").css("visibility", "hidden");
+
+			}
 		}
 	});
 
