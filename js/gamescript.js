@@ -31,6 +31,9 @@ $(document).ready(function(){
 	changeQuestions(0);
 
 	requirementsResize();
+
+
+
 	window.addEventListener("resize", requirementsResize);
 
 
@@ -193,16 +196,12 @@ $(document).ready(function(){
 		var currentDraggedImgOffset = $("#dragged").offset();
 		var offsetOfScroll = $(window).scrollTop();
 
-		console.log(" scroll offset y = " + offsetOfScroll);
-
-
 		var posYAfterMove = currentDraggedImgOffset.top - offsetOfScroll - posYMoveOffset;
 		var posXAfterMove = currentDraggedImgOffset.left - posXMoveOffset;
 
 		$("#dragged").css("top", posYAfterMove + "px");
 		$("#dragged").css("left", posXAfterMove + "px");
 
-		console.log("x = " + posXAfterMove + ", y = " + posYAfterMove);
 	}
 
 	function stopDraggingImg(){
