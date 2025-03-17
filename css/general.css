@@ -19,6 +19,12 @@
 	initial-value: hsl(173,100%,90%);
 }
 
+@property --darkerTextBgColor{
+	syntax:"<color>";
+	inherits:false;
+	initial-value: hsl(173,80%,80%);
+}
+
 @property --buttonBgColor{
 	syntax:"<color>";
 	inherits:false;
@@ -29,6 +35,12 @@
 	syntax:"<color>";
 	inherits:false;
 	initial-value: hsl(170,30%,30%);
+}
+
+@property --lighterBorderColor{
+	syntax:"<color>";
+	inherits:false;
+	initial-value: hsl(170,30%,45%);
 }
 
 @property --reqDefaultColor{
@@ -64,7 +76,7 @@ h1{
 
 .text{
 	background-color:var(--textBgColor);
-	border-color: hsl(170,30%,45%) var(--borderColor) var(--borderColor) hsl(170,30%,45%);
+	border-color: var(--lighterBorderColor) var(--borderColor) var(--borderColor) var(--lighterBorderColor);
 	border-style: solid;
 	border-width:2px;	
 	border-radius: 2px;
@@ -103,7 +115,7 @@ h2{
 
 .character{
 
-	height:calc(100% - 4.5vh);
+	height: 100%;	/*calc(100% - 4.5vh);*/
 	user-drag: none;
     -webkit-user-drag: none;
     user-select: none;
@@ -250,7 +262,7 @@ h2{
 	background-color: var(--buttonBgColor);
 	border-radius: 6px;
 }
-
+/*
 #textorganiser{
 	width:100%;
 	height:4.5vh;
@@ -301,7 +313,7 @@ h2{
 	left:80%;
 	width:18%;
 }
-
+*/
 .popuponhover{
 
 }
@@ -311,6 +323,11 @@ h2{
 	position:fixed;
 	z-index: -9;
 	padding:0.3em;
+}
+
+.break{
+	text-align: center;
+	background-color: var(--darkerTextBgColor);
 }
 
 @media only screen and (orientation: portrait){
@@ -350,6 +367,7 @@ h2{
 		flex-direction: row;
 		overflow: auto;
 		margin:0px;
+		margin-bottom:0.5em;
 	}
 
 	.character{
@@ -410,9 +428,9 @@ h2{
 
 
 	#dragged{
-		width:8%;
+		width:8vw;
 		height:auto;
-		max-height:8%;
+		max-height:8vh;
 		cursor: pointer;
 		position:fixed;
 		top:0px;
