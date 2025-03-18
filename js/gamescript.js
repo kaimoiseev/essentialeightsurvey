@@ -50,6 +50,12 @@ $(document).ready(function(){
 			$("body").find(".requirementsline").eq(i).css("height", questionHeight);
 			$("body").find(".requirementssquare").eq(i*4+1).css("width", extraHelmetWidth + "px");
 		}
+
+		var dDImgHeight = $(".dragdrop").css("height").slice(0,-2);
+		var reqLineHeight = $("body").find(".requirementsline").eq(numberOfLines-1).css("height").slice(0,-2);
+
+		fixInlineDDPosition = parseFloat(reqLineHeight - dDImgHeight);
+		$("#requirementselement").css("top", fixInlineDDPosition + "px");
 	}
 
 
@@ -68,14 +74,13 @@ $(document).ready(function(){
 			if(i>0){
 				if(questions[partIndex][i].requirementsLayout[1]==0 && questions[partIndex][i-1].requirementsLayout[1]!=0){
 					var questionLineBreak = "<p class='question text break'><b><i>If you confirm implementation of the measures above, please take Maturity Level 2 armor.</i></b></p>";
-					var reqLineBreak = "<div class='requirementsline'><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div></div>";
+					var reqLineBreak = "<div class='requirementsline'><img class='dragdrop helmet inlinedragdrop' src='../images/helmet-144x128.png' draggable='false' alt='Pixel art of a helmet'><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div></div>";
 					$("#questionselement").append(questionLineBreak);
 					$("#requirementselement").append(reqLineBreak);
-
 					
 				} else if (questions[partIndex][i].requirementsLayout[0]==0 && questions[partIndex][i-1].requirementsLayout[0]!=0){
 					var questionLineBreak = "<p class='question text break'><b><i>If you confirm implementation of the measures above, please take Maturity Level 1 armor.</i></b></p>";
-					var reqLineBreak = "<div class='requirementsline'><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div></div>";
+					var reqLineBreak = "<div class='requirementsline'><img class='dragdrop cuirass inlinedragdrop' src='../images/cuirass-128x128.png' draggable='false' alt='Pixel art of a cuirass'><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div></div>";
 					$("#questionselement").append(questionLineBreak);
 					$("#requirementselement").append(reqLineBreak);
 				}
@@ -98,9 +103,15 @@ $(document).ready(function(){
 	
 		}
 		var questionLineBreak = "<p class='question text break'><b><i>Finally, having confirmed these measures above, take Maturity Level 3 armor.</i></b></p>";
-		var reqLineBreak = "<div class='requirementsline'><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div></div>";
+		var reqLineBreak = "<div class='requirementsline'><img class='dragdrop shield inlinedragdrop' src='../images/shield-128x128.png' draggable='false' alt='Pixel art of a shield'><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div></div>";
 		$("#questionselement").append(questionLineBreak);
 		$("#requirementselement").append(reqLineBreak);
+		var numberOfLines = $(".question").length;
+		var dDImgHeight = $(".dragdrop").css("height").slice(0,-2);
+		var reqLineHeight = $("body").find(".requirementsline").eq(numberOfLines-1).css("height").slice(0,-2);
+
+		fixInlineDDPosition = reqLineHeight - dDImgHeight;
+		$("#requirementselement").css("top", fixInlineDDPosition + "px");
 
 		requirementsResize();	
 	}
@@ -112,7 +123,17 @@ $(document).ready(function(){
 	$(".dragdrop").mousedown(function(){		//create a dragged img
 	
 		// which level image is dragged
-		currentDraggedImgLevelIndex = $(".dragdrop").index(this);
+//		currentDraggedImgLevelIndex = $(".dragdrop").index(this);
+
+		if($(".cuirass").index(this) > -1){
+			currentDraggedImgLevelIndex = 0;
+		} else if ($(".helmet").index(this) > -1){
+			currentDraggedImgLevelIndex = 1;
+		} else if ($(".shield").index(this) > -1){
+			currentDraggedImgLevelIndex = 2;
+		} else if ($(".na").index(this) > -1){
+			currentDraggedImgLevelIndex = 3;
+		}
 		
 		//create dragged image element 
 		var draggedImg = $("<img id='dragged' src='" + draggableImgLinks[currentDraggedImgLevelIndex] + "'>");

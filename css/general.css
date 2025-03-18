@@ -181,7 +181,11 @@ h2{
 }
 
 #questionselement{
+	/*
 	max-width:67vw;
+	*/
+	max-width: 70vw;
+
 	box-sizing: border-box;
 
 }
@@ -203,9 +207,15 @@ h2{
 	border-radius: 6px;
 	position:absolute;
 	right:5%;
-	top:0px;
+	top:0vh;
 	max-width: 28vw;
-	overflow:auto;
+	overflow:show;
+}
+
+.inlinedragdrop{
+	position:absolute;
+	float: none;
+
 }
 
 .requirementsline{
@@ -222,10 +232,14 @@ h2{
 .requirementssquare{
 	height:1em;
 	box-sizing: border-box;
-	border: 2px solid var(--borderColor);
+
+
+	background-color: var(--bgColor);
+	border:none;
+/*	border: 2px solid var(--borderColor);
 	border-radius: 3px;
 	background-color: var(--reqDefaultColor);
-	overflow: hidden;
+*/	overflow: hidden;
 	margin-right:4px;
 	margin-left:0px;
 	margin-top:0.25em;
@@ -237,10 +251,11 @@ h2{
 	background-color: var(--bgColor);
 	border:none;
 }
-
+/*
 .required{
 	background-color:var(--requiredColor);
 }
+*/
 
 #nextsectionbutton{
 	position:fixed;
