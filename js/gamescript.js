@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	// array with section titles; the number of sections shown on the page depends on this array
-	var surveyParts = ["Patch applications",  "Patch operating systems", "Multi-factor authentication", "Restrict administrative privileges", "Application control", "Restrict Microsoft Office macros", "User application hardening", "Regular backups"];
+	var surveyParts = ["Patch applications",  "Patch operating systems (Levels 2 and 3 only)", "Multi-factor authentication", "Restrict administrative privileges", "Application control", "Restrict Microsoft Office macros", "User application hardening", "Regular backups"];
 	var currentSurveyPart = 0;
 	var currentDraggedImgLevelIndex = 99;
 	var characterHoverIndex = 99;
@@ -73,13 +73,13 @@ $(document).ready(function(){
 		for (var i=0;i<numberOfQuestions;i++){
 			if(i>0){
 				if(questions[partIndex][i].requirementsLayout[1]==0 && questions[partIndex][i-1].requirementsLayout[1]!=0){
-					var questionLineBreak = "<p class='question text break'><b><i>If you confirm implementation of the measures above, please take Maturity Level 2 armor.</i></b></p>";
+					var questionLineBreak = "<p class='question text break'><b><i>If you confirm implementation of the measures above, please take Maturity Level 2 armour from the Armoury.</i></b></p>";
 					var reqLineBreak = "<div class='requirementsline'><img class='dragdrop helmet inlinedragdrop' src='../images/helmet-144x128.png' draggable='false' alt='Pixel art of a helmet'><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div></div>";
 					$("#questionselement").append(questionLineBreak);
 					$("#requirementselement").append(reqLineBreak);
 					
 				} else if (questions[partIndex][i].requirementsLayout[0]==0 && questions[partIndex][i-1].requirementsLayout[0]!=0){
-					var questionLineBreak = "<p class='question text break'><b><i>If you confirm implementation of the measures above, please take Maturity Level 1 armor.</i></b></p>";
+					var questionLineBreak = "<p class='question text break'><b><i>If you confirm implementation of the measures above, please take Maturity Level 1 armour from the Armoury.</i></b></p>";
 					var reqLineBreak = "<div class='requirementsline'><img class='dragdrop cuirass inlinedragdrop' src='../images/cuirass-128x128.png' draggable='false' alt='Pixel art of a cuirass'><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div></div>";
 					$("#questionselement").append(questionLineBreak);
 					$("#requirementselement").append(reqLineBreak);
@@ -102,7 +102,7 @@ $(document).ready(function(){
 			$("#requirementselement").append(currentReqLine);
 	
 		}
-		var questionLineBreak = "<p class='question text break'><b><i>Finally, having confirmed these measures above, take Maturity Level 3 armor.</i></b></p>";
+		var questionLineBreak = "<p class='question text break'><b><i>Finally, having confirmed these measures above, take Maturity Level 3 armour from the Armoury.</i></b></p>";
 		var reqLineBreak = "<div class='requirementsline'><img class='dragdrop shield inlinedragdrop' src='../images/shield-128x128.png' draggable='false' alt='Pixel art of a shield'><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div><div class='requirementssquare notapplicable'></div></div>";
 		$("#questionselement").append(questionLineBreak);
 		$("#requirementselement").append(reqLineBreak);
