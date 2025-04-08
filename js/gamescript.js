@@ -161,7 +161,17 @@ $(document).ready(function(){
 
 	$(".dragdrop").on('touchstart', function(event){
 		event.preventDefault();
-		currentDraggedImgLevelIndex = $(".dragdrop").index(this);
+		currentDraggedImgLevelIndex = 99;
+		if($(".cuirass").index(this) > -1){
+			currentDraggedImgLevelIndex = 0;
+		} else if ($(".helmet").index(this) > -1){
+			currentDraggedImgLevelIndex = 1;
+		} else if ($(".shield").index(this) > -1){
+			currentDraggedImgLevelIndex = 2;
+		} else if ($(".na").index(this) > -1){
+			currentDraggedImgLevelIndex = 3;
+		}
+		
 
 	});
 
