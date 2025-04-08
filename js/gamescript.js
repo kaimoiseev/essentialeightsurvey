@@ -359,16 +359,20 @@ $(document).ready(function(){
 		}
 	}
 
-	$(".popuponhover").hover(function(){
+	$(".popuponhover").mouseenter(function(){
 		// place pop-up on mouse position, index of the pop-up in its class should be the same as the index of the
 		//popupOnHover element in said class 
 		var popupIndex = $(".popupOnHover").index(this);
 		$("body").find(".popup").eq(popupIndex).css({"visibility":"visible", "top": event.clientY, "left":event.clientX, "z-index":"100"});
 
-	}, function(){
+	});
+
+	$(".popuponhover").mouseleave(function(){
 		var popupIndex = $(".popupOnHover").index(this);
 		$("body").find(".popup").eq(popupIndex).css({"visibility":"hidden", "z-index":"10"});
 		
 	});
+
+
 
 });

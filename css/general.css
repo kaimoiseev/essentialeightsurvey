@@ -208,7 +208,7 @@ h2{
 	position:absolute;
 	right:5%;
 	top:0vh;
-	max-width: 28vw;
+	max-width: 25vw;
 	overflow:show;
 }
 
@@ -329,8 +329,7 @@ h2{
 	width:18%;
 }
 */
-.popuponhover{
-
+.popuponhover .popup{
 }
 
 .popup{
@@ -338,6 +337,10 @@ h2{
 	position:fixed;
 	z-index: -9;
 	padding:0.3em;
+	overflow:auto;
+	height:auto;
+	max-height:60vh !important;
+	
 }
 
 .break{
