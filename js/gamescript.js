@@ -120,7 +120,7 @@ $(document).ready(function(){
 	// drag and drop functions for each column (4 total) to change the image and variable for each group 
 
 
-	$(".dragdrop").mousedown(function(){		//create a dragged img
+	$("#requirementselement, #dragdropfilters").on('mousedown', '.dragdrop', function(){		//create a dragged img
 	
 		// which level image is dragged
 //		currentDraggedImgLevelIndex = $(".dragdrop").index(this);
@@ -134,6 +134,8 @@ $(document).ready(function(){
 		} else if ($(".na").index(this) > -1){
 			currentDraggedImgLevelIndex = 3;
 		}
+
+		console.log(currentDraggedImgLevelIndex);
 		
 		//create dragged image element 
 		var draggedImg = $("<img id='dragged' src='" + draggableImgLinks[currentDraggedImgLevelIndex] + "'>");
@@ -309,6 +311,8 @@ $(document).ready(function(){
 			currentSurveyPart = currentSurveyPart + 1;
 			changeQuestions(currentSurveyPart);
 			for (var i=0; i<currentPartLevels.length; i++){
+				//need this for changing the characters either into default or into already chosen 
+				// level of armour
 				currentPartLevels[i] = securityLevels[currentSurveyPart][i];
 				if(currentPartLevels[i]==99){
 				$("body").find(".character").eq(i).attr("src", links[i][4]);
