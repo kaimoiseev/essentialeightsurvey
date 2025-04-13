@@ -134,8 +134,6 @@ $(document).ready(function(){
 		} else if ($(".na").index(this) > -1){
 			currentDraggedImgLevelIndex = 3;
 		}
-
-		console.log(currentDraggedImgLevelIndex);
 		
 		//create dragged image element 
 		var draggedImg = $("<img id='dragged' src='" + draggableImgLinks[currentDraggedImgLevelIndex] + "'>");
